@@ -133,6 +133,10 @@ nav h1 a {
   width: 200px;
 }
 
+.filter-options select:focus {
+  border: purple 2px solid;
+}
+
 /* ====================== Restaurant Listing ====================== */
 #restaurants-list {
   background-color: #f3f3f3;
