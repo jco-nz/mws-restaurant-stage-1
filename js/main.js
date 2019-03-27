@@ -7,7 +7,7 @@ var markers = []
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('/service_worker.js')
-    .catch(err => console.log('There is a problem', err));
+    .catch(err => console.log('There is a problem to register the service worker', err));
 }
 
 
@@ -186,9 +186,10 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.tabIndex = 4;
+  more.setAttribute('role', 'button');
   li.append(more)
 
-  li.tabIndex = "4";
 
   return li
 }
