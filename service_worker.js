@@ -16,12 +16,11 @@ const resourcesToCache = [
     '/img/8.jpg',
     '/img/9.jpg',
     '/img/10.jpg',
+    '/img/favicon.ico',
     '/index.html',
     '/restaurant.html',
-    '/service_worker.js'
+    '/'
 ]
-
-console.log('Service worker registered');
 
 
 self.addEventListener('install', event => {
@@ -32,14 +31,15 @@ self.addEventListener('install', event => {
             .then( cache => {
                 return cache.addAll(resourcesToCache);
             })
+            .catch(error => {
+                console.log('Installation exception', error);
+            })
     );
 
 });
 
 
 self.addEventListener('fetch', event => {
-    // console.log(event.request.url);
-    // event.respondWith(fetch(event.request));
 
     event.respondWith(
         caches.match(event.request)
