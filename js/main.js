@@ -4,17 +4,14 @@ let restaurants,
 var newMap
 var markers = []
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('/service_worker.js')
-    .catch(err => console.log('There is a problem to register the service worker', err));
-}
+
 
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  registerServiceWorker();
   initMap(); // added 
   fetchNeighborhoods();
   fetchCuisines();
@@ -220,3 +217,10 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 } */
 
+registerServiceWorker = () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('/service_worker.js')
+      .catch(err => console.log('There is a problem to register the service worker', err));
+  }
+}
